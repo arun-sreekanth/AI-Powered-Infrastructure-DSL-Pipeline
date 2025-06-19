@@ -2,6 +2,7 @@
 
 This project leverages large language models (LLMs) from [OpenAI](https://openai.com) to translate natural language prompts into infrastructure-as-code with Terraform.
 
+
 - Explore **OpenAI GPT models**: [OpenAI Models](https://platform.openai.com/docs/models)
 
 ---
@@ -10,7 +11,25 @@ This project leverages large language models (LLMs) from [OpenAI](https://openai
 ![Python](https://img.shields.io/badge/Python-3.10+-yellow)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI/CD-green)
 
----
+
+
+
+## Tech Stack
+- CrewAI
+
+- OpenAI / LLMs / LangChain
+
+- Terraform / HCL
+
+- AWS Provider (can be extended to GCP, Azure)
+
+- Infracost
+
+- OPA / Rego for Policy Validation
+
+- Python 3.10+
+
+- GitHub Actions / CI for plan checks (optional)
 
 ## 🚀 Project Overview
 
@@ -65,7 +84,63 @@ This project is a **production-grade AI-powered infrastructure pipeline** that t
 - Python 3.10+
 - Terraform CLI installed and configured
 - AWS CLI configured with appropriate credentials (if deploying to AWS)
-- Install Python dependencies:
+- Install Python dependencies
 
 ```bash
+git clone https://github.com/<your-username>/terraform-ai-dsl.git
+cd terraform-ai-dsl
+python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
+export OPENAI_API_KEY=sk-...
+python crew/main.py
+```
+
+Invoke the orchestration script with your infrastructure request prompt:
+
+```bash
+python crew/main.py "Create a VPC with a t2.micro EC2 instance in us-east-1"
+```
+This will do the following:
+
+Parse the natural language prompt into a structured DSL
+
+Plan and validate the DSL, adding compliance tags
+
+Generate Terraform HCL files into the terraform/ directory
+
+Inject secrets securely (currently mocked)
+
+Validate policy compliance via OPA rules
+
+Automatically run terraform init, plan, and apply to deploy the resources
+
+## Secrets & Security
+
+- Secrets injection is managed by the SecretAgent module, currently implemented as a placeholder printing mock secret injection.
+
+- For production usage, integrate with secure secrets management tools such as HashiCorp Vault, AWS KMS, or AWS Secrets Manager.
+
+- Never hardcode secrets or credentials in code or Terraform files.
+
+- The PolicyValidatorAgent ensures resources comply with organizational security policies using OPA (Open Policy Agent) Rego rules.
+
+- Tags such as owner and env are enforced across resources to facilitate governance and auditability.
+
+## Future Enhancements
+
+- Full Vault or AWS KMS integration to dynamically retrieve and inject secrets securely
+
+- Extend DSL support to multiple cloud providers such as Azure, GCP, and multi-cloud deployments
+
+- Add cost estimation capabilities using tools like Infracost to provide budget forecasts during infra creation
+
+- Integrate Sentinel or other policy-as-code tools for advanced governance and compliance automation
+
+
+- Develop a web UI dashboard for visual infra design and deployment tracking
+
+- Automate documentation generation and Terraform graph visualizations for infrastructure transparency
+
+- Improve NLP parsing sophistication to support complex multi-resource workflows and dependencies
+
+- Add approval gates and audit logging before Terraform applies for enterprise security requirements

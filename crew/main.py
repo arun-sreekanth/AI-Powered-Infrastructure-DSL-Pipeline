@@ -18,5 +18,5 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         user_input = sys.argv[1]
     else:
-        user_input = input("💬 Enter your infrastructure prompt: ")
+        user_input = input("Enter your infrastructure prompt: ")
     kickoff(user_input)

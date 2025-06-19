@@ -31,14 +31,4 @@ terraform-ai-dsl/
 └── README.md               # You're here!
 
 
-## FlowChart
-```bash
-  A[Natural Language Input] --> B[Parse to DSL via NLParserAgent]
-  B --> C[Add Compliance + Policies via DSLPlannerAgent]
-  C --> D[Generate Modular Terraform via HCLGeneratorAgent]
-  D --> E[Inject Secrets via SecretAgent]
-  E --> F[Validate with PolicyValidatorAgent]
-  F --> G[Generate Terraform Docs via DocAgent]
-  G --> H{Human Approval}
-  H -->|Yes| I[terraform apply]
-  H -->|No| J[Halt]
+

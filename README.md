@@ -1,3 +1,46 @@
+# AI-Powered Infrastructure DSL Pipeline
+
+![Terraform](https://img.shields.io/badge/Terraform-Infrastructure-blue)
+![Python](https://img.shields.io/badge/Python-3.10+-yellow)
+![GitHub Actions](https://github.com/yourusername/terraform-ai-dsl/workflows/Terraform%20CI/badge.svg)
+
+---
+
+## Project Overview
+
+This project demonstrates a production-grade AI-powered Infrastructure DSL pipeline that converts natural language infrastructure requests into Terraform code using a modular set of AI agents (CrewAI). It features:
+
+- Natural Language Parsing (GPT-4)
+- DSL Planning & Validation
+- HCL Terraform generation with reusable modules
+- Secure secrets injection
+- Policy compliance checks
+- Automated Terraform lifecycle (init, plan, apply)
+- GitHub Actions CI/CD
+- Testing and documentation generation
+
+---
+
+## Architecture Diagram
+
+```mermaid
+graph TD
+    UserInput["User Natural Language Prompt"]
+    Parser[\"NLParserAgent (GPT-4)\"]
+    Planner[\"DSLPlannerAgent\"]
+    Validator[\"DSL Validator (jsonschema/OPA)\"]
+    Generator[\"HCLGeneratorAgent (Terraform + Modules)\"]
+    SecretAgent[\"SecretAgent (AWS KMS/Vault)\"]
+    PolicyValidator[\"PolicyValidatorAgent (OPA)\"]
+    Executor[\"ExecutionAgent (Terraform CLI)\"]
+    TerraformCode["Terraform Code Output"]
+    GitHubActions["GitHub Actions CI/CD"]
+
+    UserInput --> Parser --> Planner --> Validator --> Generator --> SecretAgent --> PolicyValidator --> Executor --> TerraformCode
+    TerraformCode --> GitHubActions
+
+
+
 # AI-Powered-Infrastructure-DSL-Pipeline
 
 > Build Infrastructure from Natural Language — Powered by LLMs, CrewAI, and Terraform.  

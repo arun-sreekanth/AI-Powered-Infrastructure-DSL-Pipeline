@@ -1,0 +1,6 @@
+openai
+langchain
+crewai
+python-dotenv
+jinja2
+pytest

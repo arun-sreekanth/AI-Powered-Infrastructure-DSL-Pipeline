@@ -7,5 +7,5 @@ class NLParserAgent:
 Given this user request: '{input_text}', generate a structured JSON DSL.
 """
         response = llm.predict(prompt)
-        print("📄 Parsed DSL:\n", response)
+        print("Parsed DSL:\n", response)
         return response

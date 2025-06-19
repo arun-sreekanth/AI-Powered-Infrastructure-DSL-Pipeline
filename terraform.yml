@@ -1,0 +1,35 @@
+name: Terraform CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  terraform:
+    name: Terraform Validate & Plan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: terraform init terraform
+
+      - name: Terraform Validate
+        run: terraform validate terraform
+
+      - name: Terraform Plan
+        run: terraform plan terraform
+
+      - name: Terraform Docs
+        run: terraform-docs markdown terraform > docs/README.md
+
+      - name: Run tflint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          tflint terraform

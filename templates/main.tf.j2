@@ -1,11 +1,16 @@
-resource "aws_vpc" "main" {
+
+module "vpc" {
+  source     = "../modules/vpc"
   cidr_block = "10.0.0.0/16"
-  tags = { Name = "ai-vpc" }
+  name       = "ai-vpc"
 }
 
 {% if dsl.ec2 %}
-resource "aws_instance" "example" {
-  ami = "ami-0c55b159cbfafe1f0"
+module "ec2" {
+  source        = "../modules/ec2"
+  ami           = "ami-0c55b159cbfafe1f0"
   instance_type = "{{ dsl.ec2.type }}"
-  tags = { Name = "AI EC2" }
+  subnet_id     = "subnet-123456"  # Replace as needed or make dynamic
+  name          = "ai-ec2-instance"
 }
+{% endif %}

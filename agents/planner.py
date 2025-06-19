@@ -6,5 +6,5 @@ class DSLPlannerAgent:
         dsl['tags'] = {"owner": "ai-pipeline", "env": "dev"}
         if 'region' not in dsl:
             dsl['region'] = "us-east-1"
-        print("🧠 Planned DSL:\n", json.dumps(dsl, indent=2))
+        print("Planned DSL:\n", json.dumps(dsl, indent=2))
         return dsl

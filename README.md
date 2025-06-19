@@ -1,4 +1,4 @@
-# AI-Powered Infrastructure DSL Pipeline
+# TerraMind: AI-Powered Infrastructure DSL(Domain Specific Language) with Terraform
 
 This project leverages large language models (LLMs) from [OpenAI](https://openai.com) to translate natural language prompts into infrastructure-as-code with Terraform.
 

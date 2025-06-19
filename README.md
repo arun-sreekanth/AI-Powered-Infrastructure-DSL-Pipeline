@@ -1,5 +1,11 @@
 # AI-Powered Infrastructure DSL Pipeline
 
+This project leverages large language models (LLMs) from [OpenAI](https://openai.com) to translate natural language prompts into infrastructure-as-code with Terraform.
+
+- Explore **OpenAI GPT models**: [OpenAI Models](https://platform.openai.com/docs/models)
+
+---
+
 ![Terraform](https://img.shields.io/badge/Terraform-Infrastructure-blue)
 ![Python](https://img.shields.io/badge/Python-3.10+-yellow)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI/CD-green)
